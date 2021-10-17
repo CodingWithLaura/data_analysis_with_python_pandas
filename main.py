@@ -1,5 +1,7 @@
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
+import datetime as dt
 
 #creating a series by passing a list of values, panda creates a default and changeable integer index
 series = pd.Series(["cake", "cookies", "icecream"])
@@ -55,6 +57,18 @@ dataframe = pd.DataFrame(data, index=["Zero", "One", "Two"])
 #print(dataframe.iat[0, 0])
 
 arbeitslose = pd.read_csv("arbeitslose_without_header.csv", sep=';', encoding='iso-8859-1')
-print(len(arbeitslose))
-print(arbeitslose.shape)
-print(arbeitslose.info())
+#print(len(arbeitslose))
+#print(arbeitslose.shape)
+#print(arbeitslose.info())
+
+arbeitslose_insgesamt = arbeitslose.iloc[:,1]
+
+#print(arbeitslose_insgesamt)
+
+nummonths = len(arbeitslose_insgesamt)
+base = dt.datetime.fromisoformat('2005-03-01')
+date_list = [base + dt.timedelta(days=x) for x in range(nummonths)]
+
+plt.plot(date_list)
+plt.show()
+
