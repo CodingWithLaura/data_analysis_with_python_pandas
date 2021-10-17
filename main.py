@@ -54,7 +54,7 @@ dataframe = pd.DataFrame(data, index=["Zero", "One", "Two"])
 
 #print(dataframe.iat[0, 0])
 
-arbeitslose = pd.read_csv("arbeitslose_final.csv", sep=';')
+arbeitslose = pd.read_csv("arbeitslose_without_header.csv", sep=';', encoding='iso-8859-1')
 print(len(arbeitslose))
 print(arbeitslose.shape)
 print(arbeitslose.info())
