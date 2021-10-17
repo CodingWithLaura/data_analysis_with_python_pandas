@@ -52,4 +52,9 @@ dataframe = pd.DataFrame(data, index=["Zero", "One", "Two"])
 
 #to use actual indices, use iat
 
-print(dataframe.iat[0, 0])
+#print(dataframe.iat[0, 0])
+
+arbeitslose = pd.read_csv("arbeitslose_final.csv", sep=';')
+print(len(arbeitslose))
+print(arbeitslose.shape)
+print(arbeitslose.info())
