@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import datetime as dt
+from datetime import datetime
 
 #creating a series by passing a list of values, panda creates a default and changeable integer index
 series = pd.Series(["cake", "cookies", "icecream"])
@@ -56,16 +57,19 @@ dataframe = pd.DataFrame(data, index=["Zero", "One", "Two"])
 
 #print(dataframe.iat[0, 0])
 
-arbeitslose = pd.read_csv("arbeitslose_without_header.csv", sep=';', encoding='iso-8859-1')
+stat_buamt_format = lambda x: datetime.strptime(x,"%d/%m/%Y")
+arbeitslose = pd.read_csv("arbeitslose_without_header.csv", sep=';', encoding='iso-8859-1', parse_dates=['Datum'], date_parser=stat_buamt_format)
 #print(len(arbeitslose))
 #print(arbeitslose.shape)
 #print(arbeitslose.info())
 
 arbeitslose_insgesamt = arbeitslose.iloc[:,1]
 
-#print(arbeitslose_insgesamt)
+print(arbeitslose)
+print(arbeitslose.info())
 
-nummonths = len(arbeitslose_insgesamt)
+
+nummonths = len(arbeitslose)
 base = dt.datetime.fromisoformat('2005-03-01')
 date_list = [base + dt.timedelta(days=x) for x in range(nummonths)]
 
